@@ -3,3 +3,12 @@ from 'table'
 where 'condition'
 order by 'column' desc
 limit N-1,1;
+
+
+#ifnull
+
+select ifnull((select distinct 'column'
+from 'table'
+where 'condition'
+order by 'column' desc
+limit N-1,1),null) as theNthHighest;
