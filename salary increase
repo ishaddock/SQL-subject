@@ -1,0 +1,9 @@
+SELECT q.id,'起始工资'-'结束工资' 'salary increase'
+FROM (
+    SELECT s.id,s.salary '起始工资',s.startdate FROM employees e LEFT JOIN salary s ON e.id = s.id
+    WHERE e.hiredate = s.startdate AND '结束日期' = '2004-01-01'
+) q JOIN(
+    SELECT s.id,s.salary '结束工资',s.enddate FROM salary
+    WHERE '结束日期' = '2004-01-01'
+) e ON q.id=e.id
+ORDER BY 'salary increase';
