@@ -1,1 +1,6 @@
 #Group by
+
+select column
+from table
+group by column
+having count(column) > n;
