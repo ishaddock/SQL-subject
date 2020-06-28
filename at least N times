@@ -1,0 +1,4 @@
+SELECT chengji FROM score s1 
+JOIN score s2 ON s2.id=s1.id+1
+JOIN score s3 ON s3.id=s2.id+1
+WHERE s1.chengji=s2.chengji AND s2.chengji=s3.chengji
