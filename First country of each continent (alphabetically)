@@ -1,0 +1,11 @@
+first way:
+SELECT x.continent, x.name 
+FROM world as x
+WHERE x.name<=ALL
+    (SELECT y.name 
+    FROM world as y 
+    WHERE y.continent=x.continent);
+         
+second way:
+SELECT continent,NAME FROM world X 
+WHERE NAME = (SELECT y.name FROM world Y WHERE x.continent = y.continent ORDER BY NAME LIMIT 1);
