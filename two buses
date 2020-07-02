@@ -1,0 +1,13 @@
+from: https://sqlzoo.net/wiki/Self_join
+[10]
+Find the routes involving two buses that can go from Craiglockhart to Lochend.
+Show the bus no. and company for the first bus, the name of the stop for the transfer,
+and the bus no. and company for the second bus.
+
+select R1.num,R1.company,stopc.name,R2.num,R2.company from 
+(select a.company,a.num,stopa.name first,b.stop second_id from route a join route b on (a.company = b.company and a.num = b.num) join stops stopa on stopa.id = a.stop) R1 
+join (select c.stop first_id,stopb.name second,d.company,d.num from route c join route d on (c.company = d.company and c.num = d.num) join stops stopb on stopb.id = d.stop) R2 
+on R1.second_id = R2.first_id
+join stops stopc on stopc.id = R1.second_id
+where first = 'Craiglockhart' and second = 'Lochend'
+order by substr(R1.num,1),name,R2.num;
